@@ -27,13 +27,12 @@ const display = data => {
         
         div.classList.add('sajan');
 
-        h3.innerText = `Country Name : ${country.name}`;
-        div.appendChild(h3);
-
-        p.innerText = `Capital : ${country.capital}
-        Population : ${country.population}
-        `;
-        div.appendChild(p);
+        div.innerHTML= `
+            <h3> Country Name : ${country.name} </h3>
+            <p>Capital : ${country.capital}</p>
+            <p>Population : ${country.population}</p>
+            <button onClick="loadCountryByName('${country.name}')">Click for more Details</button>
+        `
 
         countryDiv.appendChild(div);
         console.log(country);
@@ -44,5 +43,30 @@ const display = data => {
     
 }
 
+
+const loadCountryByName = name => {
+
+    const url = `https://restcountries.eu/rest/v2/name/${name}`;
+
+    fetch(url)
+    .then(res => res.json())
+    .then(data => displayCountryDetails(data[0]));
+
+   // console.log(name);
+}
+
+const displayCountryDetails = country => {
+
+    const countryDeatils = document.getElementById('country-details');
+    countryDeatils.innerHTML = `
+    <h5>Country Name : ${country.name} </h5>
+    <img width="200px" src="${country.flag}">
+
+
+    `
+
+
+    console.log(country);
+}
 
 countries();

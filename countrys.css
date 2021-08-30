@@ -1,0 +1,12 @@
+#countries{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+}
+
+.sajan{
+    
+    padding: 15px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 2px solid red;
+}
